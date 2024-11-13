@@ -1,0 +1,14 @@
+.header {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #6765ad;
+  overflow: hidden;
+  height: auto !important;
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  margin: 24px 16px;
+  padding: 20px;
+}

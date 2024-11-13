@@ -1,4 +1,6 @@
-import Header from "./header/Header";
-import Footer from "./footer/Footer";
+import CustomHeader from "./header/CustomHeader";
+import LeftSidbar from "./leftSidbar/LeftSidbar";
+import MainContent from "./mainContent/MainContent";
+import RightSidbar from "./rightSidbar/RightSidbar";
 
-export { Header, Footer };
+export { CustomHeader, LeftSidbar, MainContent, RightSidbar };

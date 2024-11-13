@@ -1,12 +1,12 @@
-header {
-  height: 70px;
-  padding: 10px 0;
-  background-color: #fff;
-  color: #6765ad;
-}
-
 .menu {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-weight: 500;
+  color: #6765ad;
   border-bottom: none;
+  flex-grow: 1;
+  flex: 1;
 }
 
 :where(.css-dev-only-do-not-override-tpassh).ant-menu-horizontal {
@@ -14,7 +14,7 @@ header {
 }
 
 .itemStyle {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   align-items: center;
 }

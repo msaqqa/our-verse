@@ -1,19 +1,27 @@
 import React from "react";
-import { Layout } from "antd";
-import LeftSidbar from "../../components/common/LeftSidbar";
-import MainContent from "../../components/common/MainContent";
-const { Sider, Header, Content } = Layout;
+import { Flex, Layout } from "antd";
+import {
+  CustomHeader,
+  LeftSidbar,
+  MainContent,
+  RightSidbar,
+} from "../../components/common";
+import "./style.css";
+
+const { Header, Content } = Layout;
 
 function MainLayout({ children }) {
   return (
     <Layout>
-      <Header>
+      <Header className="header">
         <CustomHeader />
       </Header>
-      <Content>
-        <LeftSidbar />
-        <MainContent />
-        <RightSidbar />
+      <Content className="content">
+        <Flex gap="large" justify="space-between">
+          <LeftSidbar style={{ width: 200 }} />
+          <MainContent style={{ flex: 1 }} />
+          <RightSidbar style={{ width: 200 }} />
+        </Flex>
       </Content>
     </Layout>
   );
