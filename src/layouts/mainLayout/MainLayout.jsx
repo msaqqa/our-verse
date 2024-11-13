@@ -17,10 +17,10 @@ function MainLayout({ children }) {
         <CustomHeader />
       </Header>
       <Content className="content">
-        <Flex gap="large" justify="space-between">
-          <LeftSidbar style={{ width: 200 }} />
-          <MainContent style={{ flex: 1 }} />
-          <RightSidbar style={{ width: 200 }} />
+        <Flex gap="large">
+          <LeftSidbar />
+          <MainContent />
+          <RightSidbar />
         </Flex>
       </Content>
     </Layout>

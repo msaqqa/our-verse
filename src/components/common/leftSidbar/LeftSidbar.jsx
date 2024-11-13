@@ -1,7 +1,7 @@
 import React from "react";
 
 function LeftSidbar() {
-  return <div>LeftSidbar</div>;
+  return <div style={{ width: "20%" }}>LeftSidbar</div>;
 }
 
 export default LeftSidbar;
