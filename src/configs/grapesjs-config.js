@@ -3,11 +3,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import EventsComponent from "../components/events/EventsComponent";
 import gjsBlocksBasic from "grapesjs-blocks-basic";
-// import gjsPresetWebpage from "grapesjs-preset-webpage";
+import eventsStyles from "../components/events/EventsComponent.css?inline";
 
 const initGrapesJS = (containerId) => {
   const editor = GrapesJS.init({
     container: `#${containerId}`,
+    style: eventsStyles,
     height: "100vh",
     storageManager: { type: null },
     plugins: [gjsBlocksBasic],
@@ -33,13 +34,15 @@ const initGrapesJS = (containerId) => {
             type: "string",
             label: "List Title",
             name: "listTitle",
+            default: null,
           },
           {
             type: "string",
             label: "Data API",
             name: "DataAPI",
+            default:
+              "https://api.escuelajs.co/api/v1/products?offset=0&limit=10",
           },
-
           {
             type: "select",
             label: "View Style",
@@ -61,32 +64,27 @@ const initGrapesJS = (containerId) => {
     },
     view: {
       onRender({ el }) {
-        const root = ReactDOM.createRoot(el);
+        const model = this.model;
 
-        const updateComponent = () => {
-          const props = {
-            title: this.model.get("listTitle") || null,
-            viewStyle: this.model.get("viewStyle") || "list",
-            itemsLimit: this.model.get("itemsLimit") || 4,
-            api:
-              this.model.get("DataAPI") ||
-              "https://jsonplaceholder.typicode.com/posts",
-            styles: { width: "100%", padding: "10px" },
-          };
+        // Render the React Component
+        const renderReactComponent = () => {
+          const root = el._reactRoot || ReactDOM.createRoot(el);
+          el._reactRoot = root;
 
-          root.render(React.createElement(EventsComponent, props));
+          root.render(
+            React.createElement(EventsComponent, {
+              title: model.get("attributes").listTitle,
+              viewStyle: model.get("attributes").viewStyle,
+              itemsLimit: model.get("attributes").itemsLimit,
+              api: model.get("attributes").DataAPI,
+            })
+          );
         };
 
-        updateComponent();
+        // Initial Render
+        renderReactComponent();
 
-        // Listen for trait changes and update the component accordingly
-        this.listenTo(
-          this.model,
-          "change:listTitle change:api change:viewStyle change:itemsLimit",
-          () => {
-            updateComponent(); // Re-render when any trait changes
-          }
-        );
+        model.on("change:attributes", renderReactComponent);
       },
     },
   });
