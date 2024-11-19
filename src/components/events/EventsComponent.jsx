@@ -1,26 +1,9 @@
-import React, { useState, useEffect } from "react";
+import useEvents from "../../hooks/useEvents";
+import EventsCard from "./EventsCard";
+import EventsList from "./EventsList";
+
 const EventsComponent = ({ title, api, viewStyle, itemsLimit }) => {
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(api);
-        const data = await response.json();
-        setEvents(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching events:", error);
-        setLoading(false);
-      }
-    };
-    fetchEvents();
-  }, [api]);
-
-  const displayedEvents = events.slice(0, itemsLimit);
-
+  const { events, loading, displayedEvents } = useEvents({ api, itemsLimit });
   return (
     <div className="events-container">
       {loading ? (
@@ -29,41 +12,9 @@ const EventsComponent = ({ title, api, viewStyle, itemsLimit }) => {
         <>
           {title && <h3>{title}</h3>}
           {viewStyle === "card" ? (
-            <div className="events-card">
-              {displayedEvents.map((event, idx) => (
-                <div
-                  key={idx}
-                  className="card-item"
-                  style={{
-                    backgroundImage: `url(${event.images && event.images[0]})`,
-                  }}
-                >
-                  <div className="card-txt">
-                    <h3 className="event-title">{event.title}</h3>
-                    <p className="event-description">
-                      {event.description.substr(0, 100)}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <EventsCard displayedEvents={displayedEvents} />
           ) : (
-            <div className="events-list">
-              {displayedEvents.map((event, idx) => (
-                <div key={idx} className="list-item">
-                  <div className="item-img">
-                    <img
-                      src={event.images && event.images[0]}
-                      alt="item-image"
-                    />
-                  </div>
-                  <div className="item-txt">
-                    <h4 className="event-title">{event.title}</h4>
-                    <p className="event-description">{event.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <EventsList displayedEvents={displayedEvents} />
           )}
           {events.length > itemsLimit && (
             <div>
