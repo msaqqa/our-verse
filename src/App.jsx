@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import initGrapesJS from "./configs/grapesjs-config";
+import "./App.css";
 import "grapesjs/dist/css/grapes.min.css";
 
 function App() {
@@ -8,13 +9,16 @@ function App() {
   }, []);
 
   return (
-    <div style={{ display: "flex", height: "100vh", overflowY: "scroll" }}>
-      {/* GrapesJS Editor */}
-      <div id="gjs" style={{ flex: 1 }}></div>
-
-      {/* Block Manager Panel */}
-      <div style={{ width: "200px", borderLeft: "1px solid #ddd" }}>
+    <div className="app-container">
+      {/* Left Panel */}
+      <div className="left-panel">
+        <div className="panel-header">Components</div>
         <div className="blocks"></div>
+      </div>
+
+      {/* Center Panel */}
+      <div className="center-panel">
+        <div id="gjs"></div>
       </div>
     </div>
   );
