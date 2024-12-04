@@ -1,0 +1,38 @@
+/* تنسيق الخلفية الداكنة والنص الفاتح */
+.cm-s-one-dark.CodeMirror {
+  background: #2a2b3c;
+  color: #d5d3d5;
+}
+
+/* تخصيص لون المؤشر */
+.cm-s-one-dark .cm-cursor {
+  border-left: 2px solid #d5d3d5;
+}
+
+/* تخصيص التمييز للأسطر النشطة */
+.cm-s-one-dark .cm-activeLine {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* تخصيص المساطر الجانبية (gutters) */
+.cm-s-one-dark .cm-gutters {
+  background: #1e1e2f;
+  color: #d5d3d5;
+}
+
+/* تخصيص خلفية الأسطر التي تحتوي على الخطأ */
+.cm-s-one-dark .cm-error {
+  background-color: #ff6666;
+}
+
+/* تخصيص لون النص عند التحديد */
+.cm-s-one-dark .cm-selectionBackground {
+  background: #4a4a6a;
+}
+
+/* تخصيص النصوص داخل المحرر */
+.CodeMirror {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: "Courier New", monospace;
+}
