@@ -11,7 +11,11 @@ const initGrapesJS = (containerId) => {
     // style,
     fromElement: true,
     height: "100vh",
-    storageManager: { type: null },
+    storageManager: {
+      type: "local",
+      autosave: true,
+      stepsBeforeSave: 1,
+    },
     plugins: [gjsBlocksBasic],
     blockManager: {
       appendTo: ".blocks",

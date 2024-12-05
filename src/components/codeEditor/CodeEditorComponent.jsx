@@ -1,14 +1,24 @@
-import React, { useState } from "react";
-import CodeMirror from "@uiw/react-codemirror"; // استخدام UnControlled من الحزمة
+import React, { useEffect, useState } from "react";
+import CodeMirror, { EditorView } from "@uiw/react-codemirror";
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
 import { oneDark } from "@codemirror/theme-one-dark";
+import prettier from "https://unpkg.com/prettier@2.2.1/esm/standalone.mjs";
+import parserHTML from "https://unpkg.com/prettier@2.2.1/esm/parser-html.mjs";
 import "./styles.css";
 
 const CodeEditorComponent = ({ editor }) => {
   const [htmlContent, setHtmlContent] = useState("");
   const [cssContent, setCssContent] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const htmlCode = editor.getHtml();
+    const cssCode = editor.getCss();
+    setHtmlContent(formatCode(htmlCode, "html"));
+    setCssContent(formatCode(cssCode, "css"));
+    formatCode();
+  }, []);
 
   const handleHtmlChange = (value) => {
     setHtmlContent(value);
@@ -18,10 +28,29 @@ const CodeEditorComponent = ({ editor }) => {
     setCssContent(value);
   };
 
+  const formatCode = (code, type) => {
+    let formattedCode = code;
+    if (type === "html" && typeof code === "string") {
+      formattedCode = prettier.format(code, {
+        parser: "html",
+        plugins: [parserHTML],
+      });
+    }
+    // else if (type === "css" && typeof code === "string") {
+    //   formattedCode = prettier.format(code, {
+    //     parser: "css",
+    //     plugins: [postcssParser],
+    //   });
+    // }
+    return formattedCode;
+  };
   const handleSave = async () => {
     setLoading(true);
-    await editor.setComponents(htmlContent);
-    await editor.addStyle(cssContent);
+    const formattedHtml = formatCode(htmlContent, "html");
+    const formattedCss = formatCode(cssContent, "css");
+    await editor.setComponents(formattedHtml);
+    await editor.addStyle(formattedCss);
+    editor.store();
     setLoading(false);
     editor.Modal.close();
   };
@@ -34,10 +63,10 @@ const CodeEditorComponent = ({ editor }) => {
             <div id="gjs-cm-title">HTML</div>
             <div className="gjs-cm-code">
               <CodeMirror
-                value={htmlContent}
                 height="450px"
-                extensions={[oneDark]}
+                extensions={[html(), oneDark, EditorView.lineWrapping]}
                 onChange={handleHtmlChange}
+                value={htmlContent}
               />
             </div>
           </div>
@@ -47,10 +76,10 @@ const CodeEditorComponent = ({ editor }) => {
             <div id="gjs-cm-title">CSS</div>
             <div className="gjs-cm-code">
               <CodeMirror
-                value={cssContent} // ربط المحتوى بحالة CSS
-                height="450px" // تعيين الارتفاع ليملأ الحاوية
-                extensions={[css(), oneDark]} // إضافة دعم CSS والثيم
-                onChange={handleCssChange} // التعامل مع التغييرات في CSS
+                value={cssContent}
+                height="450px"
+                extensions={[css(), oneDark, EditorView.lineWrapping]}
+                onChange={handleCssChange}
               />
             </div>
           </div>

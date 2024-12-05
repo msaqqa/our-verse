@@ -5,15 +5,6 @@ import styles from "./styles.css?inline";
 import vindo from "./vindo.html?raw";
 
 const codeEditorBlock = (editor) => {
-  // Adding component styles
-  // editor.setStyle(styles);
-
-  // // Adding component struture
-  // editor.setComponents(vindo);
-
-  // const html = editor.getHtml();
-  // const css = editor.getCss();
-
   // Add Custom Panel
   editor.Panels.addButton("options", {
     id: "open-html-css",
@@ -26,7 +17,7 @@ const codeEditorBlock = (editor) => {
   editor.Commands.add("open-html-css", {
     run(editor) {
       const modal = editor.Modal;
-      modal.setTitle("Custom HTML & CSS Editor");
+      modal.setTitle("Add HTML & CSS code to web builder");
       modal.setContent(`<div id="custom-panel-container"></div>`);
       modal.open();
 
