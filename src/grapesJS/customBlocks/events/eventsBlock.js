@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import EventsComponent from "../../components/events/EventsComponent";
+import EventsComponent from "../../../components/events/EventsComponent";
 import styles from "./styles.css?inline";
 const eventsBlock = (editor) => {
   // Adding component styles
@@ -54,7 +54,6 @@ const eventsBlock = (editor) => {
     view: {
       onRender({ el }) {
         const model = this.model;
-
         // Render the React Component
         const renderReactComponent = () => {
           const root = el._reactRoot || ReactDOM.createRoot(el);

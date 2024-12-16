@@ -1,11 +1,8 @@
-import { addTitle } from "./addTitle";
-import { moveButtonsToOptions } from "./moveButtonsToOptions";
-import { toggleSettingsWithBlocks } from "./toggleSettingsWithBlocks";
+import { controllerTabs } from "./controllerTabs";
 
 function mainLayout(editor) {
-  addTitle();
-  toggleSettingsWithBlocks(editor);
-  moveButtonsToOptions();
+  // add controller tabs inside style manager
+  controllerTabs(editor);
 }
 
 export default mainLayout;

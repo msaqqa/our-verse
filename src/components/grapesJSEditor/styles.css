@@ -1,0 +1,29 @@
+.tabsContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+.tabBtn {
+  flex: 1;
+  background-color: rgb(185, 165, 166);
+  border: none;
+  color: white;
+  padding: 5px;
+  font-size: 10px;
+  cursor: pointer;
+}
+.tabBtn.active {
+  background-color: rgb(217, 122, 166);
+}
+.tabBtn i {
+  display: inline-flex;
+  margin-bottom: 5px;
+}
+
+/* content side */
+.text-content {
+  margin-top: 7px;
+}
+.text-content textarea {
+  width: 100%;
+}

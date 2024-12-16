@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import CodeEditorComponent from "../../components/codeEditor/CodeEditorComponent";
+import CodeEditorComponent from "../../../components/codeEditor/CodeEditorComponent";
 import styles from "./styles.css?inline";
 import vindo from "./vindo.html?raw";
 
