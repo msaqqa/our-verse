@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Typography from "../../../components/typography/Typography";
-import styles from "../../../components/typography/styles.js";
+// import typographyStyles from "../../../components/typography/styles.js";
 
 const typographyBlook = (editor) => {
   // Adding component styles
-  // console.log("styles", styles);
-  // editor.addStyle(styles);
+  // editor.addStyle(typographyStyles);
 
   // Add the custom block for EventsComponent
   editor.BlockManager.add("typograph", {
@@ -63,6 +62,9 @@ const typographyBlook = (editor) => {
             default: "",
           },
         ],
+      },
+      toHTML() {
+        return this.view.el.innerHTML || "";
       },
     },
     view: {

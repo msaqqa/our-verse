@@ -8,11 +8,7 @@ const GrapesJSEditor = () => {
     initGrapesJS("gjs");
   }, []);
 
-  return (
-    <>
-      <div id="gjs" />
-    </>
-  );
+  return <div id="gjs" />;
 };
 
 export default GrapesJSEditor;

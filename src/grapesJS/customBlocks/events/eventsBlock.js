@@ -6,6 +6,9 @@ const eventsBlock = (editor) => {
   // Adding component styles
   editor.addStyle(styles);
 
+  // const css = editor.getCss();
+  // console.log("css", css);
+
   // Add the custom block for EventsComponent
   editor.BlockManager.add("events-block", {
     label: "Events",
@@ -49,6 +52,9 @@ const eventsBlock = (editor) => {
             default: 4,
           },
         ],
+      },
+      toHTML() {
+        return this.view.el.innerHTML || "";
       },
     },
     view: {

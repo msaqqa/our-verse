@@ -21,15 +21,12 @@ const Typography = ({ ...props }) => {
   const styles = {
     color: props.color || "black",
     fontWeight: props.bold,
-    fontSize: getTypographySize(props?.variant),
     lineHeight: props?.bold ? 1.1 : 1.25,
+    fontSize: getTypographySize(props?.variant),
     fontFamily: props?.fontFamily || "PlusJakartaSans",
   };
 
-  return (
-    <div as={props.variant} {...props} style={styles}>
-      {props.content}
-    </div>
-  );
+  const Wrapper = props.variant;
+  return <Wrapper style={styles}>{props.content}</Wrapper>;
 };
 export default Typography;

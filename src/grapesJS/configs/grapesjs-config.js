@@ -5,14 +5,14 @@ import "grapesjs/dist/css/grapes.min.css";
 import mainLayout from "../layouts/mainLayout";
 import typographyBlook from "../customBlocks/typography/typographyBlook";
 import eventsBlock from "../customBlocks/events/eventsBlock";
-// import codeEditorBlock from "../customBlocks/codeEditor/codeEditorBlock";
+import codeEditorBlock from "../customBlocks/codeEditor/codeEditorBlock";
 // import imageInteraction from "../customBlocks/Image/imageInteraction";
+// import styles from "../customBlocks/events/styles.css?inline";
 
 const initGrapesJS = (containerId) => {
   const editor = GrapesJS.init({
     container: `#${containerId}`,
     height: "100vh",
-    // style,
     fromElement: true,
     storageManager: {
       type: "local",
@@ -33,7 +33,7 @@ const initGrapesJS = (containerId) => {
 
   // imageInteraction(editor);
   eventsBlock(editor);
-  // codeEditorBlock(editor);
+  codeEditorBlock(editor);
   typographyBlook(editor);
 
   // Execute Functions After GrapesJS Load

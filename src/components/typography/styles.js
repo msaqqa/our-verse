@@ -21,6 +21,7 @@ const getTypographySize = (variant) => {
 
 const Wrapper = styled.div`
   color: ${(props) => {
+    console.log("props style", props);
     props.color || "black";
   }};
   font-weight: ${(props) =>
